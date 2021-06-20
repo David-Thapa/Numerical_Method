@@ -2,10 +2,19 @@
 #include<iomanip>
 #include<cmath>
 
-#define f(x) exp(-x)-5
-#define df(x) -exp(-x)
-
 using namespace std;
+
+void Question1(float x, float &fx, float &dfx)
+{
+    fx = log(x) + 6*x - 5;
+    dfx = (1/x) + 6;
+}
+
+void Question2(float x, float &fx, float &dfx)
+{
+    fx = cos(x) + 5*x*x - 3*x - 5;
+    dfx = -sin(x) + 10*x - 3;
+}
 
 float Equation(float x,float fx,float dfx)
 {
@@ -27,7 +36,7 @@ void Display(float x,float fx, float dfx, float xn, float error)
 int main()
 {
     float X,Xn,fx,dfx,Error;
-    X = -2.0;
+    X = 2;
     cout<<left<<setw(15)<<"Iteration"
         <<setw(15)<<"X"
         <<setw(15)<<"f(X)"
@@ -35,8 +44,7 @@ int main()
         <<setw(10)<<"Xn+1"
         <<setw(10)<<"Error"<<endl;
     do {
-        fx = f(X);
-        dfx = df(X);
+        Question1(X,fx,dfx);
         Xn = Equation(X,fx,dfx);
         Error = (Xn - X) / Xn;
         Error < 0.0 ? Error = -Error : Error;
